@@ -43,14 +43,11 @@ int main(int argc, char *argv[])
         return 1;
     }
     // save binary file without first 3 bytes
-    char c;
-    while (!feof(fp)) {
-        c = fgetc(fp);
-        if (ferror(fp)) {
-            printf("Error: failed reading file %s\n", path);
-            return 1;
-        }
-        fputc(c, fp2);
+    // read file using 4096 bytes buffer
+    char buf2[4096];
+    int n;
+    while ((n = fread(buf2, 1, 4096, fp)) > 0) {
+        fwrite(buf2, 1, n, fp2);
     }
 
     // close file
