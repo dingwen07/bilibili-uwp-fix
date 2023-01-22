@@ -59,3 +59,8 @@ temp
 
 # other
 .mp4
+
+# IDE
+.vscode
+.vs
+CppProperties.json

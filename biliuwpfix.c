@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     char *path = argv[1];
     
     // open file
-    FILE *fp = fopen(path, "r+");
+    FILE *fp = fopen(path, "rb");
     if (fp == NULL) {
         printf("Error: cannot open file %s\n", path);
         return 1;
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
     // remove temp file if it exists
     remove("temp");
-    FILE *fp2 = fopen("temp", "w");
+    FILE *fp2 = fopen("temp", "wb");
     if (fp2 == NULL) {
         printf("Error: cannot create temp file\n");
         return 1;
@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
 
     // close file
     fclose(fp);
+    fclose(fp2);
 
     // rename temp file to original file
     remove(path);
